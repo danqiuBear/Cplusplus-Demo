@@ -25,7 +25,7 @@ void Sort::bubbleSort(vector<int>& A, int n){
 				int tmp = A[j];
 				A[j] = A[j + 1];
 				A[j + 1] = tmp;
-				flag = true;//±íÊ¾ÓĞÊı¾İ½»»»
+				flag = true;//è¡¨ç¤ºæœ‰æ•°æ®äº¤æ¢
 			}
 		}
 		if (flag == false) break;
@@ -48,16 +48,16 @@ void Sort::insertionSort(vector<int>& A, int n){
 	if (n <= 1)return;
 	for (int i = 1; i < n; ++i){
 		int value = A[i];
-		int j = i - 1;//Ñ°ÕÒ²åÈëµÄÎ»ÖÃ
+		int j = i - 1;//å¯»æ‰¾æ’å…¥çš„ä½ç½®
 		for (; j>=0; --j){
 			if (A[j] > value){
-				A[j + 1] = A[j];//Ç°ÃæµÄ´óÊıÍùºóÒÆ
+				A[j + 1] = A[j];//å‰é¢çš„å¤§æ•°å¾€åç§»
 			}
 			else{
 				break;
 			}
 		}
-		A[j+1] = value;//²åÈëÊı¾İ
+		A[j+1] = value;//æ’å…¥æ•°æ®
 	}
 }
 void Sort::shellSort(vector<int>&A, int n){
@@ -67,7 +67,7 @@ void Sort::shellSort(vector<int>&A, int n){
 	int right = n - 1;
 	int d = n;
 	while (d > 1){
-		d = (d + 1) / 2;
+		d = d/3+1;//ç»è¿‡éªŒè¯ï¼Œå†™æˆd = (d+1)/2ä¼šæœ‰é”™
 		for (int i = left; i + d <= right; ++i){
 			if (A[i] > A[i+d]){
 				/*int tmp = A[i];
@@ -102,16 +102,16 @@ int Sort::kth_element(vector<int>& A, int n, int k){
 void Sort::countingSort(vector<int>& A, int n){//n=A.size()
 	if (n <= 1)return;
 	int max = A[0];
-	for (int i = 1; i < n; ++i){//²éÕÒÊı×éÖĞÊıµÄ·¶Î§
+	for (int i = 1; i < n; ++i){//æŸ¥æ‰¾æ•°ç»„ä¸­æ•°çš„èŒƒå›´
 		if (max < A[i]){
 			max = A[i];
 		}
 	}
-	vector<int> c(max+1, 0);//ÉêÇëÒ»¸ö¼ÆÊıÊı×é
+	vector<int> c(max+1, 0);//ç”³è¯·ä¸€ä¸ªè®¡æ•°æ•°ç»„
 	for (int i = 0; i < n; ++i){//
 		c[A[i]]++; 
 	}
-	//½«¼ÆÊıÊı×éÒÀ´ÎÀÛ¼Ó
+	//å°†è®¡æ•°æ•°ç»„ä¾æ¬¡ç´¯åŠ 
 	for (int i = 1; i <= max; ++i){
 		c[i] = c[i] + c[i - 1];
 	}
